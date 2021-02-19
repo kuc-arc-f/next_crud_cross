@@ -6,7 +6,7 @@
 
  date    : 2021/02/18
 
- update  :
+ update  : 2021/02/19
 
 ***
 ### Summary
@@ -64,6 +64,9 @@ https://cms-kuc-jamstack1.netlify.app/pages/6029cea268013b004be190e2
 ***
 ### Blog : 
 
+Headless CMSを、バックエンドにしたCRUD をNext.jsで作成
+
+https://note.com/knaka0209/n/ncbc51ec619e6
 
 ***
 
