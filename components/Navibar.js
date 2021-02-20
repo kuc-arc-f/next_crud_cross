@@ -19,6 +19,10 @@ export default function Navibar(){
           <Link href="/tasks" className="nav-link">
             <a className="ml-2"><i className="fas fa-check"></i> Tasks </a></Link>                    
         </li>        
+        <li className="nav-item active">
+          <Link href="/books" className="nav-link">
+            <a className="ml-2"><i className="fas fa-check"></i> Books </a></Link>                    
+        </li>        
       </ul>
       <ul className="navbar-nav">
         <li className="nav-item">

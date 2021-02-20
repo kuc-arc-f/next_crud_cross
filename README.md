@@ -6,7 +6,7 @@
 
  date    : 2021/02/18
 
- update  : 2021/02/19
+ update  : 2021/02/20
 
 ***
 ### Summary
@@ -34,7 +34,7 @@ if change URL, API URL, API_KEY, SITE_ID,BASE_URL
 API_URL: "http://localhost:3001",
 API_KEY: "1234",
 SITE_ID: "1234",
-BASE_URL: "http://localhost:3000"
+BASE_URL: "http://localhost:3002"
 ```
 
 * package.json / scripts
@@ -42,7 +42,7 @@ BASE_URL: "http://localhost:3000"
 if change, port number ( -p )
 
 ```
-"dev": "next dev -p 3000"
+"dev": "next dev -p 3002"
 ```
 
 ***
