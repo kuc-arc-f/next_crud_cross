@@ -51,7 +51,13 @@ export default {
         });        
         return data
     },    
-
+    convertItemDate : function(item){
+    //		var data ={}
+        var date = new Date(item.created_at)
+        date = this.formatDate(date, 'YYYY-MM-DD hh:mm')
+        item.created_at = date
+        return item
+    }, 
     get_reverse_items: function(items){
 		var data =[]
 		var self = this

@@ -7,7 +7,8 @@ const IndexRow = props => (
       <Link href={`/books/${props.id}`}>
         <h3><a>{props.title}</a></h3>
       </Link>
-      {props.date} , ID: {props.id}
+      {props.date} , ID: {props.id}<br />
+      Category : {props.category_name}
     </td>
     <td>
       <Link href={`/books/edit/${props.id}`}>

@@ -51,5 +51,24 @@ export default {
         });
         return ret
     },
+  get_post_items : function(posts , categories){
+    try{
+      var ret = []
+      posts.forEach(function (item) {
+        item.category = { name: ""}
+          categories.forEach(function (category){
+            if( item.category_id === category._id ){
+              //console.log( category )
+              item.category = category ;
+            }
+          });
+          ret.push(item)
+      });
+      return ret;  
+    } catch (e) {
+      console.log(e);
+      throw new Error('Error , get_post_items');
+    } 
+  },
 
 }
