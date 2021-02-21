@@ -20,7 +20,7 @@ export default class Page extends React.Component {
   }  
   render() {
     const items = this.props.items
-console.log(items)
+// console.log(items)
     return (
     <Layout>
       <div className="container">

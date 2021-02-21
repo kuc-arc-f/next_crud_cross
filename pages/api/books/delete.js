@@ -6,7 +6,7 @@ export default async function (req, res){
     var item = {
       id: data.id,
     };    
-    var content = "tasks"
+    var content = "books"
     const response = await fetch(process.env.API_URL + '/api/post/delete/' + content, {
       method: 'POST',
       headers: { 

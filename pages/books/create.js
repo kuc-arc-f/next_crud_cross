@@ -16,11 +16,15 @@ export default class extends Component {
     var url_categ = process.env.API_URL +`/api/get/find?content=${content}&site_id=${site_id}`
     const res_categ = await fetch(url_categ)    
     const json_categ = await res_categ.json()
-//console.log(json_categ)    
+    var url_tag = process.env.API_URL +`/api/get/find?content=tags&site_id=${site_id}`
+    const res_tag = await fetch(url_tag)    
+    const json_tag = await res_tag.json()
+//console.log(json_tag)    
     return { 
       user_id :cookies(ctx).user_id,
       csrf: json.csrf,
       category_items: json_categ,
+      tags: json_tag,
     }
   }  
   constructor(props){
@@ -46,9 +50,25 @@ export default class extends Component {
   } 
   async add_item(){
     try {
+      var myForm = document.getElementById('myForm');
+      var formData = new FormData(myForm); 
+      var elem = [] 
+      var tags = this.props.tags     
+      tags.map((item, index) => {
+//console.log(item.name)
+        var elemName = "check_" + item.id
+        var value = formData.get( elemName )
+        if(value ==  "on"){
+          console.log(item.name, value)
+          elem.push(item.id)
+        }
+      }) 
+      var json= JSON.stringify( elem );
+// console.log(json)
       var elem = document.getElementById('category_id');
       var item = {
         category_id: elem.value,
+        tag_ids: json,
         title: this.state.title,
         content: this.state.content,
         _token: this.state._token
@@ -86,11 +106,26 @@ export default class extends Component {
         </select>          
       </div>
     )
-  }   
+  } 
+  checkRow(){
+    var tags = this.props.tags
+//console.log(tags)
+    return tags.map((item, index) => {
+// console.log(item )
+      var name = "check_" + item.id
+      return(
+        <div key={index}>
+          <input type="checkbox" name={name} id={name}
+          /> {item.name}
+        </div>
+      )
+    })    
+  }  
   render() {
     return (
       <Layout>
         <div className="container">
+        <form action="/api/content/new" method="post" id="myForm" name="myForm">
           <Link href="/books">
             <a className="btn btn-outline-primary mt-2">Back</a></Link>
           <hr className="mt-2 mb-2" />
@@ -114,12 +149,18 @@ export default class extends Component {
                   className="form-control" rows="8"></textarea>                  
               </div>
               </div>
-          </div><br />          
+          </div>
+          <hr />
           <div className="form-group">
+            <label>Tag :</label>
+            {this.checkRow()}          
+          </div>
+        </form>
+        <div className="form-group">
               <button className="btn btn-primary" onClick={this.handleClick}>Create
               </button>
-          </div>                
-          <hr />
+        </div>                
+        <hr />          
         </div>
       </Layout>
     )    
