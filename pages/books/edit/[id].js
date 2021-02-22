@@ -202,10 +202,9 @@ export default class extends React.Component {
           <div className="row">
             <div className="col-md-6">
             <div className="form-group">
-                <label>Content:</label>
-                <input type="text" className="form-control"
-                  value={this.state.content}
-                  onChange={this.handleChangeContent.bind(this)}/>
+              <label>Content:</label>
+              <textarea type="text" onChange={this.handleChangeContent.bind(this)}
+              className="form-control" rows="8">{this.state.content}</textarea>                 
             </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ function Home(data) {
       <FlashBox messages_success={data.flash.messages_success} />
       <div className="container mb-0">
         <br />
+        <LoginBox user_id={data.user_id} />
         <p className="mt-2">version : { data.version }</p>
         <h1>Home</h1>
         <p>welcome , headless-1</p>

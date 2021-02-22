@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Router from 'next/router'
 import cookies from 'next-cookies'
+import flash from 'next-flash';
 
 import Layout from '../../components/layout'
 import LibCms from '../../libs/LibCms'
@@ -25,7 +27,14 @@ export default class Page extends React.Component {
   constructor(props){
     super(props)
 //console.log(this.props)
-  }  
+  }
+  componentDidMount(){
+    console.log( "user_id=" ,this.props.user_id )
+    if(typeof this.props.user_id === 'undefined'){
+      flash.set({ messages_error: 'Error, Login require' })
+      Router.push('/login');
+    }    
+  }     
   render() {
     const items = this.props.items
 //console.log(items)
