@@ -25,7 +25,7 @@ export default class extends React.Component {
     var url_tag = process.env.API_URL +`/api/get/find?content=tags&site_id=${site_id}`
     const res_tag = await fetch(url_tag)    
     const json_tag = await res_tag.json()
-// console.log(json_tag)    
+//console.log(json)    
       return {
           id: id,
           item: json,
@@ -45,10 +45,14 @@ export default class extends React.Component {
       category_id: this.props.item.category_id, 
       tag_ids: this.props.item.tag_ids,       
       _token : this.props.csrf.token,
+      item: this.props.item
     }
 //console.log(this.props.item )
   }  
   componentDidMount(){
+    var elemDate = document.getElementById('pub_date');
+    elemDate.value= this.props.item.pub_date
+
   }     
   handleChangeTitle(e){
     console.log("handleChangeTitle:")
@@ -88,6 +92,7 @@ export default class extends React.Component {
     try {
       var myForm = document.getElementById('myForm');
       var formData = new FormData(myForm); 
+      var elemDate = document.getElementById('pub_date');
       var elem = [] 
       var tags = this.props.tags     
       tags.map((item, index) => {
@@ -106,9 +111,10 @@ export default class extends React.Component {
         content: this.state.content,
         tag_ids: json,
         id: this.props.id,
+        pub_date: elemDate.value,
         _token: this.state._token
       }
-//console.log(item)
+// console.log(item)
       const res = await fetch(process.env.BASE_URL +'/api/books/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
@@ -202,6 +208,10 @@ export default class extends React.Component {
                   onChange={this.handleChangeContent.bind(this)}/>
             </div>
             </div>
+          </div>
+          <div className="form-group">
+            <label>Pub date:</label>
+            <input type="date" name="pub_date" id="pub_date" className="form-control" />
           </div>
           <div className="form-group">
           <label>Tag :</label>

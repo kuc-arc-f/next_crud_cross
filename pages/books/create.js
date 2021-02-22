@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Router from 'next/router'
 import flash from 'next-flash';
 import React, {Component} from 'react';
+import moment from 'moment';
 import cookies from 'next-cookies'
 
 import Layout from '../../components/layout'
@@ -30,14 +31,21 @@ export default class extends Component {
   constructor(props){
     super(props)
     this.state = {
-      title: '', content: '', _token : '',category_id:''
+      title: '', content: '', _token : '',category_id:'',
+      pub_date: '',
     }
     this.handleClick = this.handleClick.bind(this);
     this.database = null
 //console.log(props)
   }
   componentDidMount(){
-    this.setState({ _token: this.props.csrf.token });
+    var dt = moment().format('YYYY-MM-DD')
+    var elem = document.getElementById('pub_date');
+    elem.value = dt
+//    console.log(d)
+    this.setState({ 
+      _token: this.props.csrf.token 
+    });
   }   
   handleChangeTitle(e){
     this.setState({title: e.target.value})
@@ -52,6 +60,7 @@ export default class extends Component {
     try {
       var myForm = document.getElementById('myForm');
       var formData = new FormData(myForm); 
+      var elemDate = document.getElementById('pub_date');
       var elem = [] 
       var tags = this.props.tags     
       tags.map((item, index) => {
@@ -71,6 +80,7 @@ export default class extends Component {
         tag_ids: json,
         title: this.state.title,
         content: this.state.content,
+        pub_date : elemDate.value,
         _token: this.state._token
       }
 //console.log(item)
@@ -142,13 +152,17 @@ export default class extends Component {
             </div>
           </div>
           <div className="row">
-              <div className="col-md-6">
-              <div className="form-group">
-                  <label>Content:</label>
-                  <textarea type="text" onChange={this.handleChangeContent.bind(this)}
-                  className="form-control" rows="8"></textarea>                  
-              </div>
-              </div>
+            <div className="col-md-6">
+            <div className="form-group">
+                <label>Content:</label>
+                <textarea type="text" onChange={this.handleChangeContent.bind(this)}
+                className="form-control" rows="8"></textarea>                  
+            </div>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Pub date:</label>
+            <input type="date" name="pub_date" id="pub_date" className="form-control" />
           </div>
           <hr />
           <div className="form-group">

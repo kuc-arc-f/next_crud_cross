@@ -7,7 +7,7 @@ import LibBook from '../../libs/LibBook'
 import LibCommon from '../../libs/LibCommon'
 //
 function Page(data) {
-//console.log(data.tags )
+// console.log(data.item )
   var tags = data.tags
   var item = data.item
   return (
@@ -29,7 +29,9 @@ function Page(data) {
       <hr className="mt-2 mb-2"/>
       </div>
       <div>{item.content}
-      </div>      
+      </div>
+      <hr />
+      Pub date : {item.pub_date}      
     </div>
   </Layout>
   )

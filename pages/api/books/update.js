@@ -15,6 +15,7 @@ export default async function (req, res){
       title: data.title ,  
       category_id: data.category_id,  
       tag_ids: data.tag_ids,  
+      pub_date: data.pub_date,
       content: data.content ,
     };
 //console.log(item);

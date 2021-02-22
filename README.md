@@ -6,7 +6,7 @@
 
  date    : 2021/02/18
 
- update  : 2021/02/21 
+ update  : 2021/02/22
 
 ***
 ### Summary
@@ -17,6 +17,7 @@ Next.js + Headless CMS, Cross domain CRUD sample
 ### required
 
 * Next.js : 10.0.0
+* react : 16.13.1
 * node : 14.11
 
 ***
