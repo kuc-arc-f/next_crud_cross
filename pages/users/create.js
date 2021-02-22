@@ -8,19 +8,18 @@ import Layout from '../../components/layout'
 //
 export default class extends Component {
   static async getInitialProps(ctx) {
+    var site_id = process.env.SITE_ID
     var url = process.env.BASE_URL + '/api/token_get'
     const res = await fetch(url)
     const json = await res.json()
-    /*
-    var url_count = process.env.BASE_URL + '/api/users/users_count'
+    var url_count = process.env.API_URL + `/api/get/count?content=users&site_id=${site_id}`
     const resCount = await fetch(url_count)
     const jsonCount = await resCount.json()
-    */
 //console.log(jsonCount.count )
     return { 
       user_id :cookies(ctx).user_id,
       csrf: json.csrf,
-      count: 9,
+      count: jsonCount.count,
     }
   }  
   constructor(props){
@@ -37,12 +36,10 @@ export default class extends Component {
   }
   componentDidMount(){
     this.setState({ _token: this.props.csrf.token });
-    /*
     if(parseInt(this.props.count) > 0){
       flash.set({ messages_error: 'Error, admin user max 1' })
       Router.push('/login');
     }
-    */
   }   
   handleChangeTitle(e){
     this.setState({title: e.target.value})
