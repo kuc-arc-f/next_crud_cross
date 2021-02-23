@@ -32,7 +32,7 @@ export default class extends Component {
     super(props)
     this.state = {
       title: '', content: '', _token : '',category_id:'',
-      pub_date: '',
+      pub_date: '', price :0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.database = null
@@ -49,6 +49,9 @@ export default class extends Component {
   }   
   handleChangeTitle(e){
     this.setState({title: e.target.value})
+  }
+  handleChangePrice(e){
+    this.setState({price: e.target.value})
   }
   handleChangeContent(e){
     this.setState({content: e.target.value})
@@ -81,6 +84,7 @@ export default class extends Component {
         title: this.state.title,
         content: this.state.content,
         pub_date : elemDate.value,
+        price: this.state.price,
         _token: this.state._token
       }
 //console.log(item)
@@ -158,6 +162,15 @@ export default class extends Component {
                 <textarea type="text" onChange={this.handleChangeContent.bind(this)}
                 className="form-control" rows="8"></textarea>                  
             </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+                <div className="form-group">
+                    <label>Price:</label>
+                    <input type="number" className="form-control"
+                    onChange={this.handleChangePrice.bind(this)} />
+                </div>
             </div>
           </div>
           <div className="form-group">
